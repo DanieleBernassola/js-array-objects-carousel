@@ -24,12 +24,19 @@ const images = [
     }
 ];
 
+const carouselImages = images.length;
 const items = document.querySelector('.items');
+const prev = document.querySelector('.prev');
+const next = document.querySelector('.next');
+let i = 2;
 
 for (let i = 0; i < images.length; i++){
     // Creo un div in cui inserirò l'immagine
     const item = document.createElement('div');
     item.classList.add('item');
+    if (i === 0){
+        item.classList.add('active');
+    }
     
     // Appendo l'immagine aggiungendo al src il link
     const img = document.createElement('img');
@@ -51,3 +58,19 @@ for (let i = 0; i < images.length; i++){
     // Appendo nel div tutte le immagini
     items.append(item);
 }
+
+prev.addEventListener('click', function() {
+    if (i > 2){
+        items.children[i].classList.remove('active');
+        i--;
+        items.children[i].classList.add('active');
+    }
+})
+
+next.addEventListener('click', function() {
+    if(i < carouselImages + 1){
+        items.children[i].classList.remove('active');
+        i++;
+        items.children[i].classList.add('active');
+    }
+})
