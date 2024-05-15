@@ -3,7 +3,7 @@
 const images = [
     {
         image: 'img/01.webp',
-        title: 'Marvel\'s Spiderman Miles Morale',
+        title: 'Marvel\'s Spiderman Miles Morales',
         text: 'Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.',
     }, {
         image: 'img/02.webp',
@@ -24,6 +24,7 @@ const images = [
     }
 ];
 
+// Dichiarazioni variabili
 const carouselImages = images.length;
 const items = document.querySelector('.items');
 const prev = document.querySelector('.prev');
@@ -59,18 +60,30 @@ for (let i = 0; i < images.length; i++){
     items.append(item);
 }
 
+// Evento immagine precedente
 prev.addEventListener('click', function() {
     if (i > 2){
         items.children[i].classList.remove('active');
         i--;
         items.children[i].classList.add('active');
+    } else {
+        // Nell'else creo il loop infinito
+        items.children[i].classList.remove('active');
+        i = 6;
+        items.children[i].classList.add('active');
     }
 })
 
+// Evento immagine successiva
 next.addEventListener('click', function() {
     if(i < carouselImages + 1){
         items.children[i].classList.remove('active');
         i++;
+        items.children[i].classList.add('active');
+    } else {
+        // Nell'else creo il loop infinito
+        items.children[i].classList.remove('active');
+        i = 2;
         items.children[i].classList.add('active');
     }
 })
